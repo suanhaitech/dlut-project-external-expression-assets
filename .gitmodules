@@ -1,0 +1,3 @@
+[submodule "vendor/suanhai-team-external-expression-infrastructure"]
+	path = vendor/suanhai-team-external-expression-infrastructure
+	url = https://github.com/suanhaitech/suanhai-team-external-expression-infrastructure.git

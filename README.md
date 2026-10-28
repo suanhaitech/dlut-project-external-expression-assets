@@ -63,13 +63,14 @@
 vendor/suanhai-team-external-expression-infrastructure
 ```
 
-当前固定提交：
+父仓库中的 gitlink 是实际使用版本的唯一事实来源；`.gitmodules` 只记录路径和远程 URL。查询提交记录中固定的版本与本地实际检出状态：
 
-```text
-28a2e61d472af8983aef36ca771fc30580a247db
+```powershell
+git ls-tree HEAD vendor/suanhai-team-external-expression-infrastructure
+git submodule status --recursive
 ```
 
-父仓库中的 gitlink 是实际使用版本的唯一事实来源；`.gitmodules` 只记录路径和远程 URL。当前基础设施提交的 `manifest.yml` 中 `capabilities` 为空，因此本次初始化只验证 submodule 的发现路径和版本关系，不能宣称已经具备 HTML 自动制作能力。
+`git ls-tree` 显示父仓库提交中的版本；`git submodule status` 显示本地检出状态，以 `+` 开头表示本地与父仓库记录不一致。这里不另存第二份版本锁。当前基础设施 `manifest.yml` 中 `capabilities` 为空，已接入的是文档启动协议，不能宣称已经具备 HTML 自动制作能力。
 
 克隆本仓库后初始化 submodule：
 
@@ -81,9 +82,21 @@ git submodule update --init --recursive
 
 升级基础设施版本时，先在独立分支中试用明确的 commit，完成真实任务验证后再提交父仓库 gitlink。不要用 `git submodule update --remote` 让稳定版本跟随浮动分支。
 
-## 六、当前阶段和后续任务
+## 六、本地 Agent 启动与验证
 
-当前阶段只完成资产仓库初始化，不制作 HTML 成品，不部署，不发布。
+在已初始化 submodule 的仓库根目录启动会读取 `AGENTS.md` 的 Agent。根规则已接入基础设施的 [Bootstrap](vendor/suanhai-team-external-expression-infrastructure/docs/consumer-repository-bootstrap.md) 和 [Harness](vendor/suanhai-team-external-expression-infrastructure/docs/consumer-repository-harness-v0.1.md)。只读试用时输入：
+
+```text
+请梳理当前仓库中对外表达工作的启动条件、当前任务和可用共享能力；先不要修改文件。
+```
+
+Agent 应先理解项目上下文、列出真实能力并说明缺失项。当前没有登记真实任务，预期结果是“无可用共享能力，缺少任务说明，停止作品生成”。支持情况以实际 Agent 客户端测试为准；不自动读取 `AGENTS.md` 的客户端需要启动时显式要求读取根规则。
+
+完整步骤见 [消费端 Agent 冒烟测试](vendor/suanhai-team-external-expression-infrastructure/docs/consumer-repository-smoke-test.md)。启动协议、专业内容正确性和发布授权分别验收；只读启动通过不代表 HTML 制作能力已经实现。
+
+## 七、当前阶段和后续任务
+
+当前阶段在候选项目上下文基础上接通 Agent 启动协议；真实任务路线、HTML 成品和发布尚待后续验证。
 
 后续第一项真实任务：
 

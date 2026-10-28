@@ -6,18 +6,28 @@
 
 1. 读取根 `README.md` 和本文件；
 2. 读取 `vendor/suanhai-team-external-expression-infrastructure/manifest.yml`；
-3. 只按 Manifest 中显式列出的能力发现和使用基础设施；
-4. 确认任务位于 `tasks/`，来源已经被明确授权；
-5. 判断输出应进入 `works/`、`series/`、`courses/` 或 `books/` 中的哪个位置。
+3. 读取 `vendor/suanhai-team-external-expression-infrastructure/docs/consumer-repository-bootstrap.md`；
+4. 读取 `vendor/suanhai-team-external-expression-infrastructure/docs/consumer-repository-harness-v0.1.md`；
+5. 读取 `context/README.md`，按其阅读顺序理解项目结构化理解、项目概览、当前状态、工作主线、来源登记和对外表达边界；
+6. 如果已指定真实任务，读取 `tasks/<task-slug>/task.md` 及其中登记的直接来源；
+7. 只按 Manifest 中显式列出的能力发现和使用基础设施，并判断输出应进入 `works/`、`series/`、`courses/` 或 `books/` 中的哪个位置。
+
+首次工作前，先报告当前项目、任务是否存在、受众与目的、允许使用的来源、计划输出路径、共享能力、缺失信息和需要真人确认的事项。事实摘要与表达边界以本仓库为准，共享协议不能覆盖更严格的本地规则。
+
+未指定任务或当前只有 `tasks/README.md` 时，只读启动不得自行创建任务或作品；应明确报告缺少任务，并停在作品生成前。用户已提出真实任务并授权写入时，可以先登记任务说明；不能把路线图中的计划当作已登记任务。
+
+submodule 或上述协议文件缺失时，报告未完成初始化或版本不匹配，不虚构其内容；先由用户或已获授权的操作完成 submodule 初始化，再继续协议测试。
 
 当前固定的基础设施 commit 的 `capabilities` 为空。能力目录存在不等于能力已经可用，不得把计划中的工具、模板、Harness 或检查器描述为已实现。
+
+在启动判断或测试记录中注明实际 submodule commit；清单为空时记录“无可用共享能力”，不虚构能力 ID。能力为空只阻止相应共享能力调用，仍允许只读梳理上下文与缺失项。Manifest 不是权限系统或执行沙箱，已登记能力仍需核对输入、输出、依赖和副作用，并遵守本机工具授权。
 
 ## 写入和权限边界
 
 - `vendor/` 下的基础设施 submodule 默认只读；
 - 项目资料、来源文件、作品、任务记录和评审记录写入父仓库；
 - 不把客户机密、凭据、令牌、生产配置或未授权数据提交到仓库；
-- 不自动执行 Git commit、push、部署或正式发布；
+- Git commit、push、部署或正式发布必须具有相应用户授权，已有授权在其范围内继续有效；
 - 不修改基础设施 submodule 内的文件来完成项目内容；
 - 隐藏入口、目录结构和 Agent 指令不能替代实际权限控制。
 

@@ -70,7 +70,7 @@ git ls-tree HEAD vendor/suanhai-team-external-expression-infrastructure
 git submodule status --recursive
 ```
 
-`git ls-tree` 显示父仓库提交中的版本；`git submodule status` 显示本地检出状态，以 `+` 开头表示本地与父仓库记录不一致。这里不另存第二份版本锁。当前基础设施 `manifest.yml` 中 `capabilities` 为空，已接入的是文档启动协议，不能宣称已经具备 HTML 自动制作能力。
+`git ls-tree` 显示父仓库提交中的版本；`git submodule status` 显示本地检出状态，以 `+` 开头表示本地与父仓库记录不一致。这里不另存第二份版本锁。当前基础设施声明任务循环与记录工具；HTML 制作、模板、预览和检查器仍未实现。
 
 克隆本仓库后初始化 submodule：
 
@@ -90,13 +90,15 @@ git submodule update --init --recursive
 请梳理当前仓库中对外表达工作的启动条件、当前任务和可用共享能力；先不要修改文件。
 ```
 
-Agent 应先理解项目上下文、列出真实能力并说明缺失项。当前没有登记真实任务，预期结果是“无可用共享能力，缺少任务说明，停止作品生成”。支持情况以实际 Agent 客户端测试为准；不自动读取 `AGENTS.md` 的客户端需要启动时显式要求读取根规则。
+Agent 应先理解项目上下文、列出真实能力并说明缺失项。当前没有登记真实任务，只读请求下应报告“具备任务循环与记录工具，缺少任务说明，停止作品生成”。支持情况以实际 Agent 客户端测试为准；不自动读取 `AGENTS.md` 的客户端需要启动时显式要求读取根规则。
 
-完整步骤见 [消费端 Agent 冒烟测试](vendor/suanhai-team-external-expression-infrastructure/docs/consumer-repository-smoke-test.md)。启动协议、专业内容正确性和发布授权分别验收；只读启动通过不代表 HTML 制作能力已经实现。
+任务循环步骤见 [任务循环验证流程](vendor/suanhai-team-external-expression-infrastructure/docs/task-loop-validation.md)。历史空能力启动测试保存在 [原冒烟流程](vendor/suanhai-team-external-expression-infrastructure/docs/consumer-repository-smoke-test.md)，不能用旧结果代替当前版本测试。循环、专业内容正确性和发布授权分别验收。
+
+获授权开始制作时，Agent 会先登记任务草案和任务号，再与用户对齐目标，持续制作/检查并收集反馈。任务状态以 `tasks/<编号>/task.json` 为准，`task.md` 为生成视图。以后可用“继续任务 <编号>”恢复进度；跨设备还需同步最新任务和产出文件。缺少 HTML 共享能力时先停在相应调用前，不伪造能力结果。
 
 ## 七、当前阶段和后续任务
 
-当前阶段在候选项目上下文基础上接通 Agent 启动协议；真实任务路线、HTML 成品和发布尚待后续验证。
+当前阶段在候选项目上下文基础上接入可恢复任务循环；先在隔离测试 clone 验证，真实任务、HTML 成品和发布尚待后续验证。
 
 后续第一项真实任务：
 

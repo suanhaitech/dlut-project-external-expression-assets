@@ -2,7 +2,8 @@
 
 - 状态：testing
 - 消费端分支：`codex/feat-submodule-policy`
-- 消费端提交：`dd8c074`（本记录随该提交加入）
+- 消费端接入提交：`dd8c074`
+- 本记录提交：`b994e90`
 - 旧 gitlink：`2252fadb8280cb1d9e7bd538cb86346452707a80`
 - 候选/实际基础设施 commit：`d769c76de9ed31e8d02afd520ed59ac653bd07a0`
 - 基础设施来源分支：`codex/feat-submodule-policy`

@@ -70,7 +70,7 @@ git ls-tree HEAD vendor/suanhai-team-external-expression-infrastructure
 git submodule status --recursive
 ```
 
-`git ls-tree` 显示父仓库提交中的版本；`git submodule status` 显示本地检出状态，以 `+` 开头表示本地与父仓库记录不一致。这里不另存第二份版本锁。当前基础设施声明任务循环、记录工具和 `html.project-report-v1` 离线项目汇报模板；HTML 自动生成、预览和检查器仍未实现。
+`git ls-tree` 显示父仓库提交中的版本；`git submodule status` 显示本地检出状态，以 `+` 开头表示本地与父仓库记录不一致。这里不另存第二份版本锁。实际可用能力始终以固定 submodule 提交中的 `manifest.yml` 为准；当前版本包含任务循环、记录工具和 `html.project-report-v1` 离线项目汇报模板，HTML 自动生成、预览和检查器仍未实现。
 
 克隆本仓库后初始化 submodule：
 
@@ -80,7 +80,9 @@ cd dlut-project-external-expression-assets
 git submodule update --init --recursive
 ```
 
-升级基础设施版本时，先在独立分支中试用明确的 commit，完成真实任务验证后再提交父仓库 gitlink。不要用 `git submodule update --remote` 让稳定版本跟随浮动分支。
+启动工作时先执行 `git submodule update --init --recursive` 恢复父仓库已经锁定的版本，再按基础设施仓库的 [消费端版本协议](vendor/suanhai-team-external-expression-infrastructure/docs/submodule-consumer-versioning.md) 做只读预检。预检可以提示远程稳定分支有更新，但不会改变工作树。
+
+升级基础设施版本时，先在独立分支中试用明确的 commit，完成 Manifest 校验、消费端冒烟测试和真实任务验证后再提交父仓库 gitlink。记录旧/新 commit、实际能力清单、验证命令、结果和回退点到 `reviews/`。不要用 `git submodule update --remote` 让稳定版本跟随浮动分支；失败时按记录的旧 commit 显式回退。
 
 ## 六、本地 Agent 启动与验证
 
@@ -90,7 +92,7 @@ git submodule update --init --recursive
 请梳理当前仓库中对外表达工作的启动条件、当前任务和可用共享能力；先不要修改文件。
 ```
 
-Agent 应先理解项目上下文、列出真实能力并说明缺失项。当前没有登记真实任务，只读请求下应报告“具备任务循环与记录工具，缺少任务说明，停止作品生成”。支持情况以实际 Agent 客户端测试为准；不自动读取 `AGENTS.md` 的客户端需要启动时显式要求读取根规则。
+Agent 应先理解项目上下文、列出固定 submodule Manifest 中的真实能力并说明缺失项。当前没有登记真实任务，只读请求下应报告缺少任务并停止作品生成。支持情况以实际 Agent 客户端测试为准；不自动读取 `AGENTS.md` 的客户端需要启动时显式要求读取根规则。
 
 任务循环步骤见 [任务循环验证流程](vendor/suanhai-team-external-expression-infrastructure/docs/task-loop-validation.md)。历史空能力启动测试保存在 [原冒烟流程](vendor/suanhai-team-external-expression-infrastructure/docs/consumer-repository-smoke-test.md)，不能用旧结果代替当前版本测试。循环、专业内容正确性和发布授权分别验收。
 

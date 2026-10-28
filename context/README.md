@@ -22,7 +22,7 @@
 
 - `houzai` 是项目专业事实、任务、研发材料和会议材料的主要来源。
 - 本 public 资产仓库承载脱敏上下文、表达任务、作品、来源关联和评审记录。
-- `vendor/suanhai-team-external-expression-infrastructure/` 只提供固定版本的通用基础设施；其 Manifest 当前未声明可用能力，不承载大工项目事实。
+- `vendor/suanhai-team-external-expression-infrastructure/` 只提供固定版本的通用基础设施；实际可用能力以当前 gitlink 对应的 Manifest 为准，不承载大工项目事实，不能根据目录存在或历史测试推断能力状态。
 - SuanhaiOS 可以提供任务环境和团队协作支持，但不是大工项目技术事实或发布授权的主数据库。
 
 ## 状态标记

@@ -6,8 +6,8 @@
 - 旧 gitlink：`2797d8349b313b2f4dd17a8106c74ee03583475f`
 - 候选及实际基础设施 commit：`fdf7e8cd14555cc1c8df0eaccd6712cbb40609ec`
 - 基础设施来源：发布到稳定 `main`，同时为 `develop` 当前集成提交
-- 操作者：Codex 代理
-- 负责人评审：待 Chaos 确认
+- 操作者：Chaos（由 Agent 按授权执行）
+- 负责人评审：Chaos 待确认
 
 ## 变更理由
 

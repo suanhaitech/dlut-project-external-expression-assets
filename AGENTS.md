@@ -79,3 +79,21 @@ git submodule update --init --recursive
 - 是否提交缓存、凭据、环境文件或大型临时预览；
 - 是否把专业确认或发布授权表达得超过实际状态；
 - `git diff --check` 和 `git status` 是否清洁、准确。
+
+<!-- BEGIN suanhai-infrastructure-consumer-harness:v1 -->
+## 共享 Suanhai 对外表达基础设施
+
+本仓库通过 `vendor/suanhai-team-external-expression-infrastructure` 固定使用 Suanhai 团队对外表达基础设施。每次新会话从本仓根目录开始，先遵守本仓规则并读取根 `README.md`、`AGENTS.md`；再读取该路径下的 `manifest.yml`、`docs/consumer-repository-bootstrap.md`、`docs/consumer-repository-harness-v0.1.md`、`docs/submodule-consumer-versioning.md` 和本次任务所需能力入口。
+
+按本仓自己的目录和规则定位任务、上下文、来源、产物与评审记录，只读取当前请求相关的材料。既有仓库不要求迁移成公共模板结构；若本仓没有清楚说明这些对象放在哪里，先向负责人确认，不新建目录或移动文件来猜测约定。
+
+用户提出新的对外表达任务时，若固定 Manifest 显式列出 `expression.task-loop`，读取其工作流入口；并仅在同时列出 `expression.task-record` 时用该工具登记和推进任务。先将请求整理为任务草案，和用户澄清目标、受众、范围、来源、输出与完成条件；用户确认方向后再进入制作。用户给出任务编号时先用已声明的记录能力读取当前状态并续作，不重复建任务。若上述能力未列出，使用本仓已有任务协议；没有适用协议时先向负责人说明缺口，不伪称共享任务能力可用。
+
+用户要求初始化小组或项目上下文时，若固定 Manifest 显式列出 `consumer.group-asset-onboarding`，读取并按该工作流推进；保留本仓现有结构和事实，不把初始化请求扩展成创建任务、作品或发布授权。
+
+完成任务对齐后，结合本仓任务和上下文判断适合调用的共享能力。只有固定版本 Manifest 的 `capabilities` 中显式列出的能力才可调用，并按 `uses` 读取其入口和依赖；匹配能力时按能力 ID 路由，不匹配时继续遵循本仓既有流程。目录存在、占位说明或远端分支前进都不代表能力可用。
+
+沿用本仓库自己的上下文、任务、产物、CI 和责任边界，不要求迁移成公共模板结构；只有任务适合且用户提出或同意时才调用共享工作流、工具或模板，不自动创建公共模板目录。首次使用共享能力前，若父仓 HEAD 已记录 gitlink，运行 Manifest 声明的 `consumer.submodule-preflight` 并使用实际路径；同一会话中仓库状态未变化时不必重复远端查询。gitlink 尚未提交时按本地 index 协议检查，不把完整预检失败当作通过。记录本任务实际使用的能力 ID 和固定 submodule commit。项目事实、来源、任务、产物和评审留在父仓；默认不修改 submodule。发现 gitlink 漂移、脏 submodule、缺失对象或入口缺失时停止。版本更新必须使用 Manifest 中实际存在的 `consumer.submodule-update` 工作流，固定完整 commit，不自动跟随远端。
+
+新 clone 如果父仓已有 gitlink、但 submodule 尚未初始化，在路径无冲突且无本地修改时按本仓规则运行 `git submodule update --init --recursive -- vendor/suanhai-team-external-expression-infrastructure` 恢复固定版本；这不是升级。能力发现不等于权限、专业事实确认或发布授权。遵循本仓规则和用户授权执行有副作用的动作。
+<!-- END suanhai-infrastructure-consumer-harness:v1 -->

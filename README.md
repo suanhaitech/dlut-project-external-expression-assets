@@ -70,7 +70,7 @@ git ls-tree HEAD vendor/suanhai-team-external-expression-infrastructure
 git submodule status --recursive
 ```
 
-`git ls-tree` 显示父仓库提交中的版本；`git submodule status` 显示本地检出状态，以 `+` 开头表示本地与父仓库记录不一致。这里不另存第二份版本锁。实际可用能力始终以固定 submodule 提交中的 `manifest.yml` 为准；当前版本包含任务循环、记录工具和 `html.project-report-v1` 离线项目汇报模板，HTML 自动生成、预览和检查器仍未实现。
+`git ls-tree` 显示父仓库提交中的版本；`git submodule status` 显示本地检出状态，以 `+` 开头表示本地与父仓库记录不一致。这里不另存第二份版本锁。实际可用能力始终以固定 submodule 提交中的 `manifest.yml` 为准；Agent 应从该文件读取能力 ID、类型、入口和依赖，本仓库不维护第二份能力清单。当前基础设施提供离线 HTML 汇报模板，但没有自动生成、预览或专用 HTML 检查器。
 
 克隆本仓库后初始化 submodule：
 
